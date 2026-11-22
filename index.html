@@ -1264,6 +1264,14 @@
       };
 
       function escapeHtml(text) {
+  return String(text ?? '').replace(/[&<>"']/g, char => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;'
+  })[char]);
+    }
       function getAccountTag() {
         return state.googleUser ? `${state.googleUser.name} (${state.googleUser.email})` : 'Guest Session';
       }
